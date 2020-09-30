@@ -48,10 +48,10 @@ function draw(){
   if(Ground.x<0){
     Ground.x=200
   }
-  if(bananaGroup.isTouching(monkey)){
-    banana.destroy()
+  if(monkey.isTouching(bananaGroup)){
+    bananaGroup.destroyEach()
     score=score+1;
-    console.log(score)
+    
   }
   
    monkey.collide(Ground);
@@ -61,18 +61,24 @@ function draw(){
   textSize(20)
   fill("white")
   text("score: "+score,500,50)
-  //switch(score){
-    //case
-  //}
+  switch(score){
+    case 10:monkey.scale=0.2;
+            break;
+   case 20:monkey.scale=0.3;
+            break;
+  case 30:monkey.scale=0.4;
+            break;
+    default:break;
+  }
 }
 function spawnbanana() {
   //write code here to spawn the clouds
-  if (frameCount % 100 === 0) {
+  if (frameCount % 60 === 0) {
     banana=createSprite(1000,140,10,10)
   banana.addImage("food", bananaImage)
   banana.scale=0.050;
     
-    banana.y = Math.round(random(280,320));
+    banana.y = Math.round(random(240,300));
     banana.velocityX = -3;
     
      //assign lifetime to the variable
